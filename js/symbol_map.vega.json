@@ -1,36 +1,36 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 800,
-    "height": 500,
-    "title": "Australia bushfire",
-    
-    "layer": [
-      {
-        "data": {
-          "url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/js/Australia.geo.json",
-          "format": {"type": "topojson", "feature": "custom.geo"}
-        },
-        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 500,
+  "title": "Australia bushfire",
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/js/Australia.geo.json",
+        "format": {"type": "topojson", "feature": "custom.geo"}
       },
-      {
-        "data": {
-          "url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/data/fire_archive.csv"
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/data/AustralianAverageMaxTemp.csv"
+      },
+      "mark": {"type": "circle", "tooltip": {"content": "data"}},
+      "encoding": {
+        "longitude": {"field": "long", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "size": {
+          "field": "Temp",
+          "type": "quantitative",
+          "scale": {"domain": [10, 40]}
         },
-        "mark": {"type": "circle", "tooltip": {"content": "data"}},
-        "encoding": {
-          "longitude": {"field": "longitude", "type": "quantitative"},
-          "latitude": {"field": "latitude", "type": "quantitative"},
-          "size": {
-            "field": "brightness",
-            "type": "quantitative",
-            "scale": {"domain": [300, 505]}
-          },
-          "color": {
-            "field": "brightness",
-            "type": "quantitative",
-            "scale": {"scheme": "reds"}
-          }
+        "color": {
+          "field": "Temp",
+          "type": "quantitative",
+          "scale": {"scheme": "reds"}
         }
       }
-    ]
-  }
+    }
+  ]
+}
