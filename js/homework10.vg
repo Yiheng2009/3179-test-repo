@@ -1,0 +1,69 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 600,
+    "title": "Australian Average Daily Maximum Temperature",
+   "projection": {
+      "type": "equirectangular",
+      "center": {"expr": "center_to"},
+      "scale": {"expr": "zoom_level"}
+    },
+    "params": [
+      
+      {
+        "name": "zoom_level",
+        "value":4000,
+        "bind": {
+          "input": "range",
+          "min": 4000,
+          "max": 60000,
+          "step": 100,
+          "name": "Zoom: "
+        }
+      },
+      {
+        "name": "center_to",
+        "value": [145, -37.95],
+        "bind": {
+          "input": "select",
+          "options": [
+            [145, -37.95],
+            [151.12, -33.51],
+            [117.2,-23.25],
+            [154.01, -27.28]
+          ],
+          "labels": ["VIC", "SYD", "SA", "QLD"],
+          "name": "Map Centre: "
+        }
+      }
+    ],
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/js/aus25fgd_r.topojson",
+          "format": {"type": "topojson", "feature": "collection"}
+        },
+        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/data/AustralianAverageMaxTemp.csv"
+        },
+        "mark": {"type": "circle", "tooltip": {"content": "data"}},
+        "encoding": {
+          "longitude": {"field": "long", "type": "quantitative"},
+          "latitude": {"field": "lat", "type": "quantitative"},
+          "size": {
+            "field": "Temp",
+            "type": "quantitative",
+            "scale": {"domain": [25, 45]}
+          },
+          "color": {
+            "field": "Temp",
+            "type": "quantitative",
+            "scale": {"scheme": "reds"}
+          }
+        }
+      }
+    ]
+  }
