@@ -56,7 +56,7 @@
           "size": {
             "field": "Temp",
             "type": "quantitative",
-            "scale": {"domain": [25, 45]}
+            "scale": {"domain": [15, 45]}
           },
           "color": {
             "field": "Temp",
