@@ -1,0 +1,17 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 400,
+    "height": 300,
+    "data": {"url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/data/AustralianAverageMaxTemp.csv"},
+    "mark": "area",
+    "encoding": {
+      "x": {
+        "timeUnit": "yearmonth", "field": "Year",
+        "axis": {"format": "%Y"}
+      },
+      "y": {
+        "aggregate": "max", "field": "Temp",
+        "title": "Temp"
+      }
+    }
+  }
