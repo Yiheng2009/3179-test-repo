@@ -3,16 +3,26 @@
   "width": 800,
   "height": 600,
   "title": "Australian Average Daily Maximum Temperature",
- "projection": {
+  "projection": {
     "type": "equirectangular",
     "center": {"expr": "center_to"},
     "scale": {"expr": "zoom_level"}
   },
   "params": [
-    
+    {
+      "name": "Year_selection",
+      "value": 2019,
+      "bind": {
+        "input": "range",
+        "min": 1975,
+        "max": 2019,
+        "step": 1,
+        "name": "Year:  "
+      }
+    },
     {
       "name": "zoom_level",
-      "value":5000,
+      "value": 5000,
       "bind": {
         "input": "range",
         "min": 650,
@@ -29,12 +39,12 @@
         "options": [
           [145, -37.95],
           [151.12, -33.51],
-          [117.2,-23.25],
+          [117.2, -23.25],
           [154.01, -27.28],
-          [115.51,-31.57],
-          [130.50,-12.17]
+          [115.51, -31.57],
+          [130.5, -12.17]
         ],
-        "labels": ["VIC", "SYD", "SA", "QLD","WA","NT"],
+        "labels": ["VIC", "SYD", "SA", "QLD", "WA", "NT"],
         "name": "Map Centre: "
       }
     }
@@ -45,12 +55,41 @@
         "url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/js/aus25fgd_r.topojson",
         "format": {"type": "topojson", "feature": "collection"}
       },
-      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+      "transform": [
+        {
+          "calculate": "'Data is not available in ' + datum.properties.NAME",
+          "as": "note"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#ddd",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {"tooltip": {"field": "note"}}
     },
     {
       "data": {
         "url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/data/AustralianAverageMaxTemp.csv"
       },
+      "transform": [
+        {
+          "lookup": "locality",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/js/aus25fgd_r.topojson",
+              "format": {
+                "type": "topojson",
+                "feature": "collection"
+              }
+            },
+            "key": "properties.NAME"
+          },
+          "as": "geo"
+        },
+        {"filter": "datum.Year == Year_selection"}
+      ],
       "mark": {"type": "circle", "tooltip": {"content": "data"}},
       "encoding": {
         "longitude": {"field": "long", "type": "quantitative"},
