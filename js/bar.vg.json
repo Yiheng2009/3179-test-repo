@@ -1,0 +1,12 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/data/AustralianAverageMaxTemp.csv"},
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "bin": true,
+        "field": "Year"
+      },
+      "y": {"field":"Temp","aggregate": "min"}
+    }
+  }
