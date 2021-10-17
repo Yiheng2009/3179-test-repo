@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
+  "width": 600,
   
   "title": "Australian Average Daily Maximum Temperature",
   "projection": {
