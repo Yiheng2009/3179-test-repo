@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 300,
-    "height": 200,
+    "width":"container",
+    
     "data": {"url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/data/AustralianAverageMaxTemp.csv"},
     "mark": "area",
     "encoding": {
