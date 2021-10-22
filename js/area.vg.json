@@ -6,8 +6,8 @@
     "mark": "area",
     "encoding": {
       "x": {
-        "timeUnit": "yearmonth", "field": "Year",
-        "axis": {"format": "%Y"}
+         "field": "Year"
+       
       },
       "y": {
         "aggregate": "max", "field": "Temp",
