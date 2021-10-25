@@ -55,39 +55,20 @@
         "url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/js/aus25fgd_r.topojson",
         "format": {"type": "topojson", "feature": "collection"}
       },
-      "transform": [
-        {
-          "calculate": "'Data is not available in ' + datum.properties.NAME",
-          "as": "note"
-        }
-      ],
+      
       "mark": {
         "type": "geoshape",
         "fill": "#ddd",
         "stroke": "white",
         "strokeWidth": 1
-      },
-      "encoding": {"tooltip": {"field": "note"}}
+      }
     },
     {
       "data": {
         "url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/data/AustralianAverageMaxTemp.csv"
       },
       "transform": [
-        {
-          "lookup": "locality",
-          "from": {
-            "data": {
-              "url": "https://raw.githubusercontent.com/Yiheng2009/3179-test-repo/main/js/aus25fgd_r.topojson",
-              "format": {
-                "type": "topojson",
-                "feature": "collection"
-              }
-            },
-            "key": "properties.NAME"
-          },
-          "as": "geo"
-        },
+        
         {"filter": "datum.Year == Year_selection"}
       ],
       "mark": {"type": "circle", "tooltip": {"content": "data"}},
