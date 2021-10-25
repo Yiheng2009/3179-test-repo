@@ -10,8 +10,8 @@
        
       },
       "y": {
-        "aggregate": "max", "field": "Temp",
-        "title": "Temp"
+        "aggregate": "max", "field": "Temp"
+        
       }
     }
   }
